@@ -1,19 +1,5 @@
-const WebSocket = require('ws')
+const { ee } = require('./twitch.js')
 
-const client = new WebSocket(require('./config.js').url)
+ee.on('open', () => console.log('open', Date.now()))
 
-client.on('open', function open() {
-  console.log('Conected')
-})
-
-client.on('message', function incoming(data) {
-  console.log(data)
-})
-
-client.on('error', function () {
-  console.log('Error')
-})
-
-client.on('close', function close() {
-  console.log('Connection Closed')
-})
+ee.on('close', () => console.log('close', Date.now()))
